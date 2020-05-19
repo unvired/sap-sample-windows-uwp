@@ -41,16 +41,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        //private ObservableCollection<PERSON_HEADER> _personHeader;
-        //public ObservableCollection<PERSON_HEADER> PersonHeader
-        //{
-        //    get => _personHeader;
-        //    set
-        //    {
-        //        _personHeader = value;
-        //        RaisePropertyChanged("PersonHeader");
-        //    }
-        //}
+
 
         private PERSON_HEADER _personHeaderInput;
 
@@ -116,7 +107,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
 
 
 
-        //internal static readonly DataManagerImpl AppDataManager = ApplicationManager.Instance.GetDataManager();
+
         private async void GetPersonClick(object sender, RoutedEventArgs e)
         {
 
@@ -136,7 +127,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
         }
         private async Task CallPAForPerson(PERSON_HEADER personHeaderInput)
         {
-            Util.ShowProgressDialog("Please wait getting the Person No.");
+            Util.ShowProgressDialog("Please wait getting the Person ");
             try
             {
                 if (personHeaderInput.PERSNUMBER != null)
