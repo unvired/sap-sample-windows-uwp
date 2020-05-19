@@ -84,26 +84,47 @@ namespace UNVIRED_SAP_SAMPLE.Views
             PersonHeaderResponse = new PERSON_HEADER();
             ValidationTextBlock.Visibility = Visibility.Collapsed;
             displayGrid.Visibility = Visibility.Collapsed;
+            gridview.Visibility = Visibility.Collapsed;
         }
 
         private void FirstName_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (ValidationTextBlock.Visibility == Visibility.Visible)
-                ValidationTextBlock.Visibility = Visibility.Collapsed;
-            displayGrid.Visibility = Visibility.Collapsed;
+            try
+            {
+                if (ValidationTextBlock.Visibility == Visibility.Visible)
+                    ValidationTextBlock.Visibility = Visibility.Collapsed;
+                displayGrid.Visibility = Visibility.Collapsed;
+                gridview.Visibility = Visibility.Collapsed;
+                if (!string.IsNullOrEmpty(FirstName.Text) && FirstName.Text.Length > 0)
+                {
+                    bool isNumeric = Util.IsNumeric(FirstName.Text);
+                    if (!isNumeric)
+                    {
+                        FirstName.Text = FirstName.Text.Substring(0, FirstName.Text.Length - 1);
+                        FirstName.Select(FirstName.Text.Length, 0);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.E($"Exception caught while last focus command executing {ex.Message}");
+            }
+
 
         }
-       
+
 
 
 
         //internal static readonly DataManagerImpl AppDataManager = ApplicationManager.Instance.GetDataManager();
         private async void GetPersonClick(object sender, RoutedEventArgs e)
         {
-         
 
-            PersonHeaderInput.PERSNUMBER=int.Parse(FirstName.Text);
-            if (PersonHeaderInput.PERSNUMBER == null) { ValidationTextBlock.Visibility = Visibility.Visible; return; }
+            if (string.IsNullOrEmpty(FirstName.Text))
+            {
+                ValidationTextBlock.Visibility = Visibility.Visible; return;
+            }
+            PersonHeaderInput.PERSNUMBER = int.Parse(FirstName.Text);
 
             if (!ConnectionHelper.HasAnyInternetConnection())
             {
@@ -113,7 +134,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
             }
             await CallPAForPerson(PersonHeaderInput);
         }
-        private async  Task CallPAForPerson(PERSON_HEADER personHeaderInput)
+        private async Task CallPAForPerson(PERSON_HEADER personHeaderInput)
         {
             Util.ShowProgressDialog("Please wait getting the Person No.");
             try
@@ -142,6 +163,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
                     {
                         BindResponseFromUMP(response.DataBEs);
                         displayGrid.Visibility = Visibility.Visible;
+                        gridview.Visibility = Visibility.Visible;
 
                     }
                 }
@@ -173,6 +195,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
                             var headerData = (item.Value).ElementAt(j);
 
                             PersonHeaderResponse = (PERSON_HEADER)headerData.Key;
+
                             IDtxt.Text = Convert.ToString(PersonHeaderResponse.PERSNUMBER);
                             Nametxt.Text = PersonHeaderResponse.FIRST_NAME;
                             Professiontxt.Text = PersonHeaderResponse.PROFESSION;
@@ -181,7 +204,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
                             weighttxt.Text = Convert.ToString(PersonHeaderResponse.WEIGHT);
                             heighttxt.Text = Convert.ToString(PersonHeaderResponse.HEIGHT);
 
-                            
+
                         }
                     }
                 }
@@ -192,6 +215,11 @@ namespace UNVIRED_SAP_SAMPLE.Views
             {
                 Logger.E($"Exception caught while binding data to the physical inventory detail page {e.Message}");
             }
+        }
+
+        private void FirstName_TextChanged_1(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

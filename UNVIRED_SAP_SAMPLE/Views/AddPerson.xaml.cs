@@ -144,6 +144,9 @@ namespace UNVIRED_SAP_SAMPLE.Views
                 //foreach (string address in addresses) addressCollection.Add(address.Trim());
 
 
+                PersonHeaderInput = new PERSON_HEADER()
+                { FIRST_NAME = FNametxt.Text, LAST_NAME = LNametxt.Text, SEX = Gendertxt.Text, PROFESSION = Professiontxt.Text };
+
                 int i = 0;
                 if (PersonHeaderInput != null && EmailInput != null)
                 {
@@ -155,7 +158,11 @@ namespace UNVIRED_SAP_SAMPLE.Views
                     PersonHeaderInput.MANDT="800";//TODO: Need to check
                     PersonHeaderInput.OBJECT_STATUS = Unvired.Kernel.UWP.Model.DataStructure.OBJECT_STATUS_ENUM.ADD;
 
-                 
+                    if(!string.IsNullOrEmpty(EmailInput.E_ADDR))
+                    { 
+                    EmailHeader.Add(new E_MAIL { E_ADDR = EmailInput.E_ADDR, MANDT = "800", PERSNUMBER = 0, SEQNO_E_MAIL = 1, FID = PersonHeaderInput.LID });
+                    }
+
                     try
                     {
                        
@@ -168,6 +175,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
                             {
                                 foreach (var item in EmailHeader)
                                 {
+                                    item.FID = PersonHeaderInput.LID;
                                     item.OBJECT_STATUS = Unvired.Kernel.UWP.Model.DataStructure.OBJECT_STATUS_ENUM.ADD;
                                     AppDataManager.InsertOrUpdateBasedOnGid(item);
                                 }
@@ -243,7 +251,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
                             {
                                 var indexOfEquals = successMesg.IndexOf("=") + 1;
                                 PersonHeaderInput.PERSNUMBER = int.Parse(successMesg.Substring(indexOfEquals, successMesg.Length - indexOfEquals - 1));
-                                //AppDataManager.InsertOrUpdate(PersonHeaderInput);
+                                AppDataManager.InsertOrUpdate(PersonHeaderInput);
                                
                                
 
@@ -293,14 +301,20 @@ namespace UNVIRED_SAP_SAMPLE.Views
             Weighttxt.Text = string.Empty;
             Heighttxt.Text = string.Empty;
             Emailtxt.Text = string.Empty;
-           // PersonHeaderInput = new PERSON_HEADER();
-        }
 
+            EmailListCollection.Clear();
+           //PersonHeaderInput = new PERSON_HEADER();
+           EmailInput = new E_MAIL();
+            displayEmailIDList.Visibility = Visibility.Collapsed;
+        }
+        
         private void AddEmail_Click(object sender, RoutedEventArgs e)
         {
+            Emailblock.Visibility = Visibility.Visible;
+            Emailtxt.Visibility = Visibility.Visible;
+            AddEmailNew.Visibility = Visibility.Visible;
+            //displayEmail.Visibility = Visibility.Visible;
            
-            displayEmail.Visibility = Visibility.Visible;
-
             if (LNametxt.Text == string.Empty)
             { 
                 ValidationTextBlock.Visibility = Visibility.Visible;
@@ -334,6 +348,7 @@ namespace UNVIRED_SAP_SAMPLE.Views
         private void AddEmailBtn_Click(object sender, RoutedEventArgs e)
         {
             displayEmailIDList.Visibility = Visibility.Visible;
+           
 
             if (!string.IsNullOrEmpty(Emailtxt.Text))
             {
@@ -349,6 +364,8 @@ namespace UNVIRED_SAP_SAMPLE.Views
                
             }
         }
+
+        
 
         //private async void Button_Click_1(object sender, RoutedEventArgs e)
         //{

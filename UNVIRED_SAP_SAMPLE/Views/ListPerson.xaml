@@ -20,89 +20,36 @@
             <RowDefinition Height="60" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition>
+            </ColumnDefinition>
+            <ColumnDefinition Width="2*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
         <TextBlock
+            Grid.ColumnSpan="2"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Foreground="{StaticResource ForegroundColor}"
             Style="{StaticResource HeaderTextBlockStyle}"
             Text="Persons Detail List">
         </TextBlock>
-        <Grid
+        <TextBox
             Grid.Row="1"
-            Margin="20,5,20,0"
-            CornerRadius="5,5,0,0">
-
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Grid
-                Grid.Row="0"
-                Grid.Column="0"
-                Grid.ColumnSpan="7"
-                Background="{StaticResource BackgroundColor}"
-                BorderBrush="{StaticResource BackgroundColor}"
-                BorderThickness="1,1,1,0" />
-
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="0"
-                Margin="10,0,0,0"
-                Style="{StaticResource TableHeadingText}"
-                Text="ID" />
-
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="1"
-                Style="{StaticResource TableHeadingText}"
-                Text="Name" />
-
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="2"
-                Style="{StaticResource TableHeadingText}"
-                Text="Profession" />
-
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="3"
-                Style="{StaticResource TableHeadingText}"
-                Text="Gender" />
-
-
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="4"
-                Style="{StaticResource TableHeadingText}"
-                Text="Weight(kg)" />
-
-            <TextBlock
-                Grid.Row="0"
-                Grid.Column="5"
-                Style="{StaticResource TableHeadingText}"
-                Text="Height(cm)" />
-
-
-
-
-        </Grid>
+            Grid.Column="0"
+            Margin="5,0,0,0"
+            PlaceholderText="Search"
+            Style="{StaticResource CommonTextBoxStyle}"
+            TextChanged="TextBox_TextChanged">
+        </TextBox>
         <ListView
             x:Name="displayGrid"
             Grid.Row="2"
-            Margin="20,0,20,0"
-            VerticalAlignment="Stretch"
+            Margin="5"
             Background="Transparent"
-            BorderBrush="Black"
-            BorderThickness="1,0,1,1"
-            CornerRadius="0,0,5,5"
-            IsItemClickEnabled="False"
-            ItemsSource="{Binding PersonHeader, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            IsItemClickEnabled="True"
+            ItemClick="displayGrid_ItemClick"
             ScrollViewer.VerticalScrollBarVisibility="Hidden"
             ScrollViewer.VerticalScrollMode="Enabled"
             SelectionMode="None">
@@ -110,8 +57,8 @@
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
-                    <Setter Property="Margin" Value="0,1,0,3" />
-                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="5,3,0,0" />
+                    <Setter Property="Padding" Value="5" />
                     <Setter Property="Background" Value="WhiteSmoke" />
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     <Setter Property="VerticalAlignment" Value="Stretch" />
@@ -121,85 +68,221 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid
-                        MinHeight="60"
-                        MaxHeight="60"
+                        MinHeight="90"
+                        MaxHeight="90"
                         Background="{StaticResource ListViewItemBackground}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <!--<ColumnDefinition Width="*" />-->
-                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*">
+                            </RowDefinition>
+                            <RowDefinition Height="0.5*">
+                            </RowDefinition>
+                        </Grid.RowDefinitions>
 
-                        <TextBlock
-                            x:Name="PIDtxt"
-                            Grid.Row="0"
-                            Grid.Column="0"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontStyle="Normal"
-                            Style="{StaticResource ListItemHeaderStyle}"
-                            Text="{Binding PERSNUMBER}" />
 
                         <TextBlock
                             x:Name="FNametxt"
                             Grid.Row="0"
                             Grid.Column="1"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="24"
+                            Padding="10"
+                            FontSize="30"
+                            FontStyle="Normal"
+                            FontWeight="Light"
                             Style="{StaticResource ListItemHeaderStyle}">
                             <Run Text="{Binding FIRST_NAME, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             <Run Text=" " />
                             <Run Text="{Binding LAST_NAME}" />
                         </TextBlock>
-
                         <TextBlock
-                            x:Name="Professiontxt"
-                            Grid.Row="0"
-                            Grid.Column="2"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="24"
-                            Style="{StaticResource ListItemHeaderStyle}"
-                            Text="{Binding PROFESSION}" />
-
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="3"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="24"
-                            Style="{StaticResource ListItemHeaderStyle}"
-                            Text="{Binding SEX}" />
+                            Grid.Row="1"
+                            Padding="10"
+                            HorizontalAlignment="Left"
+                            FontSize="25"
+                            Style="{StaticResource CommonTextBlockStyleMuted}"
+                            Text="{Binding PERSNUMBER}" />
 
 
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="4"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="24"
-                            Style="{StaticResource ListItemHeaderStyle}"
-                            Text="{Binding WEIGHT}" />
-
-                        <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="5"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="24"
-                            Style="{StaticResource ListItemHeaderStyle}"
-                            Text="{Binding HEIGHT}" />
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
 
 
         </ListView>
+
+        <Grid
+            x:Name="personDetailGrid"
+            Grid.Row="2"
+            Grid.Column="1"
+            Margin="50,0,100,0">
+            <Grid.RowDefinitions>
+                <RowDefinition>
+                </RowDefinition>
+                <RowDefinition Height="10">
+                </RowDefinition>
+                <RowDefinition>
+                </RowDefinition>
+                <RowDefinition Height="10">
+                </RowDefinition>
+                <RowDefinition>
+                </RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid
+                Grid.Row="0"
+                Background="WhiteSmoke"
+                CornerRadius="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="3*">
+                    </ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource CommonTextBlockStyleMuted}" Text="Name">
+                </TextBlock>
+                <TextBlock
+                    Grid.Row="1"
+                    Style="{StaticResource CommonTextBlockStyleMuted}"
+                    Text="Number">
+                </TextBlock>
+                <TextBlock
+                    Grid.Row="2"
+                    Style="{StaticResource CommonTextBlockStyleMuted}"
+                    Text="Gender">
+                </TextBlock>
+                <TextBlock
+                    Grid.Row="3"
+                    Style="{StaticResource CommonTextBlockStyleMuted}"
+                    Text="Profession">
+                </TextBlock>
+
+                <TextBlock
+                    x:Name="Nametext"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Style="{StaticResource CommonTextBlockStyle}">
+                </TextBlock>
+                <TextBlock
+                    x:Name="NumberText"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource CommonTextBlockStyle}">
+                </TextBlock>
+                <TextBlock
+                    x:Name="GenderText"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Style="{StaticResource CommonTextBlockStyle}">
+                </TextBlock>
+                <TextBlock
+                    x:Name="ProfessionText"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Style="{StaticResource CommonTextBlockStyle}">
+                </TextBlock>
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                Background="WhiteSmoke"
+                CornerRadius="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                    <RowDefinition Height="40">
+                    </RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*">
+                    </ColumnDefinition>
+                    <ColumnDefinition Width="3*">
+                    </ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Style="{StaticResource CommonTextBlockStyleMuted}" Text="Birthday">
+                </TextBlock>
+                <TextBlock
+                    Grid.Row="1"
+                    Style="{StaticResource CommonTextBlockStyleMuted}"
+                    Text="Height">
+                </TextBlock>
+                <TextBlock
+                    Grid.Row="2"
+                    Style="{StaticResource CommonTextBlockStyleMuted}"
+                    Text="Weight">
+                </TextBlock>
+
+                <TextBlock
+                    x:Name="BirthDayText"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Style="{StaticResource CommonTextBlockStyle}">
+                </TextBlock>
+                <TextBlock
+                    x:Name="HeightText"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource CommonTextBlockStyle}">
+                </TextBlock>
+                <TextBlock
+                    x:Name="WeightText"
+                    Grid.Row="2"
+                    Grid.Column="2"
+                    Style="{StaticResource CommonTextBlockStyle}">
+                </TextBlock>
+            </Grid>
+
+
+            <ListView
+                x:Name="emailListView"
+                Grid.Row="4"
+                Grid.Column="2"
+                Margin="5"
+                Background="Transparent"
+                IsItemClickEnabled="False"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                ScrollViewer.VerticalScrollMode="Enabled"
+                SelectionMode="None">
+
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Margin" Value="5,3,0,0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="Background" Value="WhiteSmoke" />
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid MinHeight="20" Background="{StaticResource ListViewItemBackground}">
+
+                            <TextBlock
+                                Grid.Row="1"
+                                Padding="10"
+                                HorizontalAlignment="Left"
+                                FontSize="18"
+                                Style="{StaticResource CommonTextBlockStyle}"
+                                Text="{Binding E_ADDR, Mode=TwoWay}" />
+
+
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+
+            </ListView>
+
+        </Grid>
 
     </Grid>
 

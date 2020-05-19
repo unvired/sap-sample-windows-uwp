@@ -810,26 +810,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource ForegroundColor}" />
     </Style>
 
-    <Style x:Key="CommonTextBlockStyle" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="18px" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="Foreground" Value="{StaticResource TextForegroundColor}" />
-        <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="Padding" Value="10" />
 
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
-
-    <Style x:Key="CommonTextBlockStyleMuted" TargetType="TextBlock">
-        <Setter Property="FontSize" Value="18px" />
-        <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="FontFamily" Value="Segoe UI" />
-        <Setter Property="Foreground" Value="{StaticResource TextSemiGrayForegroundColor}" />
-        <Setter Property="TextWrapping" Value="Wrap" />
-        <Setter Property="Padding" Value="10" />
-        <Setter Property="VerticalAlignment" Value="Center" />
-    </Style>
 
     <Style x:Key="PopUpGridStyle" TargetType="Panel">
         <Setter Property="ChildrenTransitions">
@@ -1665,6 +1646,51 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="CommonTextBoxStyle" TargetType="TextBox">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="VerticalAlignment" Value="Center" />
 
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="CornerRadius" Value="2" />
+    </Style>
+    <Style x:Key="CommonFiedlTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Foreground" Value="Gray" />
+    </Style>
+    <Style x:Key="CommonFiedlValueTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+
+    <Style x:Key="CommonTextBlockStyle" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="Margin" Value="5,0,0,0" />
+
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="CommonTextBlockStyleMuted" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontFamily" Value="Segoe UI" />
+        <Setter Property="Foreground" Value="Gray" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
 
 </ResourceDictionary>

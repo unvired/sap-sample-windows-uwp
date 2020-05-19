@@ -22,8 +22,7 @@
             VerticalAlignment="Center"
             Foreground="{StaticResource ForegroundColor}"
             Style="{StaticResource HeaderTextBlockStyle}"
-            Text="Add Per">
-        </TextBlock>
+            Text="Add Person" />
 
 
         <ScrollViewer
@@ -42,18 +41,39 @@
                     <!--<ColumnDefinition Width="32*" />-->
                     <!--<ColumnDefinition Width="241*" />-->
                     <ColumnDefinition Width="900*" />
-                    <ColumnDefinition Width="400" />
+                    <ColumnDefinition Width="450" />
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
 
                     <Grid.RowDefinitions>
-
+                        <RowDefinition Height="60" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <Grid x:Name="displayGrid" Grid.Row="0">
+                    <Grid
+                        Grid.Row="0"
+                        Grid.ColumnSpan="7"
+                        Margin="20,5,20,0"
+                        Background="{StaticResource BackgroundColor}"
+                        BorderBrush="Black"
+                        BorderThickness="1,1,1,0"
+                        CornerRadius="5,5,0,0">
+
+                        <TextBlock Style="{StaticResource TableHeadingText}" Text="Add New Person" />
+                    </Grid>
+                    <Grid
+                        x:Name="displayGrid"
+                        Grid.Row="1"
+                        Margin="20,0,20,0"
+                        VerticalAlignment="Stretch"
+                        Background="WhiteSmoke"
+                        BorderBrush="Black"
+                        BorderThickness="1,0,1,1"
+                        CornerRadius="0,0,5,5"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollMode="Enabled">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
                             <RowDefinition Height="50" />
@@ -62,30 +82,30 @@
                             <RowDefinition Height="50" />
                             <RowDefinition Height="50" />
                             <RowDefinition Height="50" />
-
+                            <RowDefinition Height="50" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="2*" />
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock
-                            Grid.Row="1"
-                            Grid.Column="0"
+                            Grid.Row="0"
+                            Margin="0,0,0,9"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
+                            VerticalAlignment="Bottom"
                             FontSize="25"
                             Foreground="DimGray"
                             Text="First Name" />
                         <TextBox
                             x:Name="FNametxt"
-                            Grid.Row="1"
+                            Grid.Row="0"
                             Grid.Column="1"
                             Width="280"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Text="{Binding PersonHeaderInput.FIRST_NAME, Mode=TwoWay}" />
+                            Style="{StaticResource CommonTextBoxStyle}" />
                         <TextBlock
-                            Grid.Row="2"
+                            Grid.Row="1"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -94,7 +114,7 @@
                             Text="Last Name " />
                         <TextBlock
                             x:Name="ValidationTextBlock"
-                            Grid.Row="2"
+                            Grid.Row="1"
                             Grid.Column="1"
                             Margin="280,0,0,0"
                             HorizontalAlignment="Left"
@@ -107,15 +127,15 @@
 
                         <TextBox
                             x:Name="LNametxt"
-                            Grid.Row="2"
+                            Grid.Row="1"
                             Grid.Column="1"
                             Width="280"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Text="{Binding PersonHeaderInput.LAST_NAME, Mode=TwoWay}" />
+                            Style="{StaticResource CommonTextBoxStyle}" />
 
                         <TextBlock
-                            Grid.Row="3"
+                            Grid.Row="2"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -124,15 +144,15 @@
                             Text="Gender" />
                         <TextBox
                             x:Name="Gendertxt"
-                            Grid.Row="3"
+                            Grid.Row="2"
                             Grid.Column="1"
                             Width="280"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Text="{Binding PersonHeaderInput.SEX, Mode=TwoWay}" />
+                            Style="{StaticResource CommonTextBoxStyle}" />
 
                         <TextBlock
-                            Grid.Row="4"
+                            Grid.Row="3"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -141,17 +161,17 @@
                             Text="Profession" />
                         <TextBox
                             x:Name="Professiontxt"
-                            Grid.Row="4"
+                            Grid.Row="3"
                             Grid.Column="1"
                             Width="280"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Text="{Binding PersonHeaderInput.PROFESSION, Mode=TwoWay}" />
+                            Style="{StaticResource CommonTextBoxStyle}" />
 
 
 
                         <TextBlock
-                            Grid.Row="5"
+                            Grid.Row="4"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -161,15 +181,15 @@
 
                         <TextBox
                             x:Name="Weighttxt"
-                            Grid.Row="5"
+                            Grid.Row="4"
                             Grid.Column="1"
                             Width="280"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Text="{Binding PersonHeaderInput.WEIGHT, Mode=TwoWay}" />
+                            Style="{StaticResource CommonTextBoxStyle}" />
 
                         <TextBlock
-                            Grid.Row="6"
+                            Grid.Row="5"
                             Grid.Column="0"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
@@ -179,16 +199,52 @@
 
                         <TextBox
                             x:Name="Heighttxt"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            Width="280"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource CommonTextBoxStyle}" />
+
+                        <TextBlock
+                            x:Name="Emailblock"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="25"
+                            Foreground="DimGray"
+                            Text="Email Id"
+                            Visibility="Collapsed" />
+
+                        <TextBox
+                            x:Name="Emailtxt"
                             Grid.Row="6"
                             Grid.Column="1"
                             Width="280"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Text="{Binding PersonHeaderInput.HEIGHT, Mode=TwoWay}" />
+                            Style="{StaticResource CommonTextBoxStyle}"
+                            Text="{Binding EmailInput.E_ADDR, Mode=TwoWay}"
+                            Visibility="Collapsed" />
 
+                        <Button
+                            x:Name="AddEmailNew"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            Width="140"
+                            Margin="300,0,10,0"
+                            Background="{StaticResource ForegroundColor}"
+                            Click="AddEmailBtn_Click"
+                            Content="More"
+                            FontFamily="Segoe MDL2"
+                            FontSize="14"
+                            Foreground="{StaticResource WhiteForegroundColor}"
+                            Style="{StaticResource CommonTextButtonStyle}"
+                            Visibility="Collapsed" />
 
-                        <!--<Button
-                            Grid.Row="8"
+                        <Button
+                            Grid.Row="7"
                             Grid.Column="0"
                             Width="140"
                             HorizontalAlignment="Right"
@@ -198,135 +254,32 @@
                             FontFamily="Segoe MDL2"
                             FontSize="14"
                             Foreground="{StaticResource WhiteForegroundColor}"
-                            Style="{StaticResource CommonTextButtonStyle}" />-->
-                        <!--<Button
+                            Style="{StaticResource CommonTextButtonStyle}" />
+
+                        <Button
                             x:Name="AddEmail"
-                            Grid.Row="8"
+                            Grid.Row="7"
                             Grid.Column="1"
                             Width="140"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
+                            Margin="5,5,5,0"
+                            VerticalAlignment="Top"
                             Background="Green"
                             Click="AddEmail_Click"
                             Content="Add Email"
                             FontFamily="Segoe MDL2"
                             FontSize="14"
                             Foreground="{StaticResource WhiteForegroundColor}"
-                            Style="{StaticResource CommonTextButtonStyle}" />-->
+                            Style="{StaticResource CommonTextButtonStyle}" />
+
+
+
                     </Grid>
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="2">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="50" />
                             <RowDefinition Height="50" />
-                            <!--<RowDefinition Height="50" />-->
                         </Grid.RowDefinitions>
 
-                        <Grid
-                            x:Name="displayEmail"
-                            Grid.Row="0"
-                            Visibility="Collapsed">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock
-                                Grid.Row="0"
-                                Margin="0,0,39,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top"
-                                FontSize="25"
-                                Foreground="DimGray"
-                                Text="Email ID" />
-                            <TextBox
-                                x:Name="Emailtxt"
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Width="280"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top" />
-                            <!--<Button
-                                Grid.Column="1"
-                                Margin="300,0,0,0"
-                                VerticalAlignment="Center"
-                                Click="Button_Click_1"
-                                Content="&#xE710;"
-                                FontSize="16"
-                                Style="{StaticResource ActionButtonStyle}"
-                                ToolTipService.ToolTip="Click to Add" />-->
-
-
-                            <Button
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Width="140"
-                                Margin="0,-4,68,0"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Background="{StaticResource ForegroundColor}"
-                                Click="AddEmailBtn_Click"
-                                Content="Add Email"
-                                FontFamily="Segoe MDL2"
-                                FontSize="14"
-                                Foreground="{StaticResource WhiteForegroundColor}"
-                                Style="{StaticResource CommonTextButtonStyle}" />
-
-                        </Grid>
-                        <Grid Grid.Row="1" Visibility="Collapsed">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-                            </Grid.ColumnDefinitions>
-
-                            <TextBlock
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Margin="0,0,39,0"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top"
-                                FontSize="25"
-                                Foreground="DimGray"
-                                Text="(Can Insert more than One Email Id)" />
-                            <!--<TextBox
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                Width="280"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                 Text="{Binding EmailInput.E_ADDR, Mode=TwoWay}" />-->
-
-
-                        </Grid>
-                        <Grid Grid.Row="2" Visibility="Visible">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="2*" />
-
-                            </Grid.ColumnDefinitions>
-
-                            <Button
-                                Width="140"
-                                HorizontalAlignment="Right"
-                                Background="{StaticResource ForegroundColor}"
-                                Click="AddPerson_Click"
-                                Content="Add"
-                                FontFamily="Segoe MDL2"
-                                FontSize="14"
-                                Foreground="{StaticResource WhiteForegroundColor}"
-                                Style="{StaticResource CommonTextButtonStyle}" />
-                            <Button
-                                x:Name="AddEmail"
-                                Grid.Column="1"
-                                Width="140"
-                                Margin="0,5,0,0"
-                                VerticalAlignment="Top"
-                                Background="Green"
-                                Click="AddEmail_Click"
-                                Content="Add Email"
-                                FontFamily="Segoe MDL2"
-                                FontSize="14"
-                                Foreground="{StaticResource WhiteForegroundColor}"
-                                Style="{StaticResource CommonTextButtonStyle}" />
-                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid
@@ -354,12 +307,13 @@
                             Grid.ColumnSpan="7"
                             Background="{StaticResource TextForegroundColor}"
                             BorderBrush="{StaticResource TextForegroundColor}"
-                            BorderThickness="1,1,1,0" />
+                            BorderThickness="1,1,1,0"
+                            CornerRadius="5,5,0,0" />
 
                         <TextBlock
                             Grid.Row="0"
                             Grid.Column="0"
-                            Margin="10,0,0,0"
+                            Margin="20,0,0,0"
                             HorizontalAlignment="Left"
                             Style="{StaticResource TableHeadingText}"
                             Text="ID" />
@@ -367,12 +321,15 @@
                         <TextBlock
                             Grid.Row="0"
                             Grid.Column="1"
-                            HorizontalAlignment="Left"
+                            HorizontalAlignment="Center"
                             Style="{StaticResource TableHeadingText}"
                             Text="Email_ID" />
                     </Grid>
 
-                    <Grid Grid.Row="1" CornerRadius="5">
+                    <Grid
+                        Grid.Row="1"
+                        Margin="20,0,20,0"
+                        CornerRadius="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80" />
                             <ColumnDefinition Width="*" />
@@ -380,8 +337,23 @@
                         <ListView
                             x:Name="EmailList"
                             Grid.ColumnSpan="2"
-                            Margin="25,0,28,42"
-                            ItemsSource="{Binding EmailHeader, Mode=TwoWay}">
+                            BorderBrush="Black"
+                            BorderThickness="1,0,1,1"
+                            CornerRadius="0,0,5,5"
+                            ItemsSource="{Binding EmailHeader, Mode=TwoWay}"
+                            ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                            ScrollViewer.VerticalScrollMode="Enabled">
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Margin" Value="0,1,0,3" />
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="Background" Value="WhiteSmoke" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="VerticalAlignment" Value="Stretch" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
@@ -393,6 +365,7 @@
                                         <TextBlock
                                             x:Name="PIDtxt"
                                             Grid.Column="0"
+                                            Margin="20,0,0,0"
                                             HorizontalAlignment="Left"
                                             Foreground="Black"
                                             Text="{Binding SEQNO_E_MAIL}" />

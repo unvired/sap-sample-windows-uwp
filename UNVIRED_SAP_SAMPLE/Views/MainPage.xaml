@@ -19,8 +19,9 @@
 
         <NavigationView
             x:Name="NavView"
-            IsBackEnabled="True"
-            IsPaneOpen="True"
+            IsBackButtonVisible="Collapsed"
+            IsBackEnabled="False"
+            IsPaneOpen="False"
             IsSettingsVisible="True"
             IsTabStop="False"
             OpenPaneLength="250"
